@@ -3,4 +3,4 @@ node_modules/
 .storybook/
 coverage
 docs/
-.github/
+.github/ISSUE_TEMPLATE/
