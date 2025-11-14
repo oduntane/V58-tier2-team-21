@@ -56,8 +56,11 @@ function findComponentDirectories(dir, componentsFound = new Map()) {
   return componentsFound;
 }
 
-// Check if a story file exists for a component
+// Check if a story file exists for a component in the stories subdirectory
 function hasStoryFile(componentDir, componentName) {
+  const storiesDir = path.join(componentDir, 'stories');
+  if (!fs.existsSync(storiesDir)) return false;
+
   const possibleStoryFiles = [
     `${componentName}.stories.tsx`,
     `${componentName}.stories.ts`,
@@ -66,7 +69,7 @@ function hasStoryFile(componentDir, componentName) {
   ];
 
   for (const storyFile of possibleStoryFiles) {
-    const storyPath = path.join(componentDir, storyFile);
+    const storyPath = path.join(storiesDir, storyFile);
     if (fs.existsSync(storyPath)) {
       return true;
     }
